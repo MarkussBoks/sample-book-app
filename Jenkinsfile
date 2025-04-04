@@ -4,49 +4,49 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                scripts{
+                script{
                     build()
                 }
             }
         }
         stage('Deploy to DEV') {
             steps {
-                scripts{
+                script{
                     deploy("DEV")
                 }
             }
         }
         stage('Tests on DEV') {
             steps {
-                scripts{
+                script{
                     test("DEV")
                 }
             }
         }
         stage('Deploy to STG') {
             steps {
-                scripts{
+                script{
                     deploy("STG")
                 }
             }
         }
         stage('Tests on STG') {
             steps {
-                scripts{
+                script{
                     test("DEV")
                 }
             }
         }
         stage('Deploy to PRD') {
             steps {
-                scripts{
+                script{
                     deploy("PRD")
                 }
             }
         }
         stage('Tests on PRD') {
             steps {
-                scripts{
+                script{
                     test("DEV")
                 }
             }
@@ -55,11 +55,11 @@ pipeline {
 }
 
 def deploy(String environment){
-    echo 'Deployment to ${environment} has started..'
+    echo "Deployment to ${environment} has started.."
 }
 
 def test(String environment){
-    echo 'Testing to ${environment} has started..'
+    echo "Testing to ${environment} has started.."
 }
 
 def build(){
