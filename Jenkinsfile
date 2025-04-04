@@ -1,5 +1,7 @@
 pipeline {
     agent any
+    triggers{pollSCM('*/1 * * * *')}
+
 
     stages {
         stage('Build') {
@@ -63,5 +65,5 @@ def test(String environment){
 }
 
 def build(){
-    echo 'Building of node application is starting..'
+    echo "Building of node application is starting.."
 }
