@@ -62,6 +62,6 @@ def test(String environment){
     echo 'Testing to ${environment} has started..'
 }
 
-def build(String environment){
+def build(){
     echo 'Building of node application is starting..'
 }
