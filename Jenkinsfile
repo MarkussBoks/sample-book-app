@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 scripts{
-                    beuild()
+                    build()
                 }
             }
         }
