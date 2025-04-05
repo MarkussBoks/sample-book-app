@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: 'MarkussBoks/api-automation'
-          ref: 'books_tests'
+          ref: 'main'
       - uses: actions/checkout@v4
         with:
           repository: 'MarkussBoks/sample-book-app'
@@ -54,10 +54,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: 'MarkussBoks/api-automation'
-          ref: 'books_tests'
+          ref: 'main'
       - uses: ./.github/actions/test
         with:
-          environment: 'DEV'
+          environment: 'STG'
           test-suite: 'BOOKS'
   deploy-prd:
     runs-on: self-hosted
@@ -75,8 +75,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: 'MarkussBoks/api-automation'
-          ref: 'books_tests'
+          ref: 'main'
       - uses: ./.github/actions/test
         with:
-          environment: 'DEV'
+          environment: 'PRD'
           test-suite: 'BOOKS'
