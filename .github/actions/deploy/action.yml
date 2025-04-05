@@ -20,9 +20,9 @@ runs:
       run: npm install
       shell: powershell
 
-    - name: Add PM2 to PATH temporarily
+    - name: Add PM2 path manually to PATH
       run: |
-        $env:Path += ";$env:APPDATA\npm"
+        $env:Path += ";C:\Users\marku\AppData\Roaming\npm"
       shell: powershell
 
     - name: Check if PM2 is available
@@ -32,6 +32,7 @@ runs:
           exit 1
         }
       shell: powershell
+
 
     - name: Stop old PM2 process (if exists)
       run: |
