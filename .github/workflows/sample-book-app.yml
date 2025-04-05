@@ -26,11 +26,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: 'mtararujs/api-automation'
+          repository: 'MarkussBoks/api-automation'
           ref: 'books_tests'
       - uses: actions/checkout@v4
         with:
-          repository: 'mtararujs/sample-book-app'
+          repository: 'MarkussBoks/sample-book-app'
           path: 'sample-book-app'
           sparse-checkout: |
             .github
@@ -53,7 +53,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: 'mtararujs/api-automation'
+          repository: 'MarkussBoks/api-automation'
           ref: 'books_tests'
       - uses: ./.github/actions/test
         with:
@@ -74,7 +74,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: 'mtararujs/api-automation'
+          repository: 'MarkussBoks/api-automation'
           ref: 'books_tests'
       - uses: ./.github/actions/test
         with:
