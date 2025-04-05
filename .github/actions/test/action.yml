@@ -1,6 +1,5 @@
 name: "Deploy Node App"
 description: "Composite action to deploy our node app using pm2"
-
 inputs:
   environment:
     description: 'Environment where to execute tests against'
@@ -8,18 +7,15 @@ inputs:
   test-suite:
     description: 'Testing suite which needs to be executed'
     default: 'BOOKS'
-
 runs:
   using: composite
   steps:
     - name: Print step name
-      run: Write-Output "Testing $env:{{ inputs.test-suite }} test set on $env:{{ inputs.environment }} has started.."
+      run: echo "Testing ${{ inputs.test-suite }} test set on ${{ inputs.environment }} has started.."
       shell: cmd
-
     - name: Install all dependencies
       run: npm install
       shell: cmd
-
     - name: Run API tests
       run: npm run ${{ inputs.test-suite }} ${{ inputs.test-suite }}_${{ inputs.environment }}
       shell: cmd
