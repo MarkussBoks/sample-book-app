@@ -5,7 +5,7 @@ runs:
   steps:
     - name: Print step name
       run: echo "Building of node application is starting.."
-      shell: bash
+      shell: powershell
     - name: Install all dependencies
       run: npm install
-      shell: bash
+      shell: powershell
