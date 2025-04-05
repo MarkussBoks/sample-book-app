@@ -14,12 +14,12 @@ runs:
   steps:
     - name: Print step name
       run: Write-Output "Testing $env:{{ inputs.test-suite }} test set on $env:{{ inputs.environment }} has started.."
-      shell: powershell
+      shell: cmd
 
     - name: Install all dependencies
       run: npm install
-      shell: powershell
+      shell: cmd
 
     - name: Run API tests
       run: npm run ${{ inputs.test-suite }} ${{ inputs.test-suite }}_${{ inputs.environment }}
-      shell: powershell
+      shell: cmd
