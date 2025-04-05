@@ -1,45 +1,27 @@
 name: "Deploy Node App"
-description: "Composite action to deploy our node app using pm2"
+description: "Deploy node app by running index.js directly (no PM2)"
 
 inputs:
   environment:
-    description: 'Environment where to execute the app'
+    description: 'Environment to deploy'
     required: true
   port:
-    description: 'Port number to run the app on'
+    description: 'Port number'
     required: true
 
 runs:
   using: composite
   steps:
-    - name: Print deployment info
-      run: Write-Output "Deployment to ${{ inputs.environment }} has started.."
-      shell: powershell
+    - name: Deployment message
+      run: Write-Output "Deployment to ${{ inputs.environment }} on port ${{ inputs.port }} has started.."
+      shell: cmd
 
     - name: Install dependencies
       run: npm install
-      shell: powershell
+      shell: cmd
 
-    - name: Add PM2 path manually to PATH
+    - name: Start index.js (simulated PM2)
       run: |
-        $env:Path += ";C:\Users\marku\AppData\Roaming\npm"
-      shell: powershell
-
-    - name: Check if PM2 is available
-      run: |
-        if (-not (Get-Command pm2 -ErrorAction SilentlyContinue)) {
-          Write-Error "PM2 is not available in PATH. Aborting deployment."
-          exit 1
-        }
-      shell: powershell
-
-
-    - name: Stop old PM2 process (if exists)
-      run: |
-        pm2 delete "books-${{ inputs.environment }}" -ErrorAction SilentlyContinue
-      shell: powershell
-
-    - name: Start PM2 process
-      run: |
-        pm2 start -n "books-${{ inputs.environment }}" index.js -- ${{ inputs.port }}
-      shell: powershell
+        Start-Process "node" -ArgumentList "index.js", "${{ inputs.port }}"
+        Write-Output "Server started using node index.js on port ${{ inputs.port }}"
+      shell: cmd
