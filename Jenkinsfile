@@ -67,11 +67,13 @@ def build(){
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
-    //bat "pm2 delete \"books-${environment}\""
+    bat "pm2 delete \"books-${environment}\""
     bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
 def test(String test_set, String environment){
     echo "Testing ${test_set} test set on ${environment} has started.."
+    git branch: 'main', poll: false, url: 'https://github.com/MarkussBoks/api-automation.git'
+    bat "npm install"
     bat "npm run ${test_set} ${test_set}_${environment}"
 }
